@@ -1,5 +1,4 @@
 package Week0;
-
 /**
  Question-1:
  Given an array of nonnegative integers, design a linear algorithm and implement it using a program
@@ -16,8 +15,36 @@ package Week0;
  YES or NO - if key is present or absent
  comparisions - no. of comparisons made
  */
+import java.io.*;
+import java.util.*;
 public class linear_search {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws IOException{
+        try {
+            Scanner sc = new Scanner(new File("./Week0/input.txt"));
+            int n = sc.nextInt();
+            while(n>0){
+                int size = sc.nextInt();
+                int arr[] = new int[size];
+                for(int i=0;i<size;i++)
+                    arr[i] = sc.nextInt();
+                int key = sc.nextInt();
+                boolean found = false;
+                int comparisions=0;
+                for(int i=0;i<size;i++){
+                    comparisions++;
+                    if(arr[i] == key){
+                        found = true;
+                        break;
+                    }
+                }
+                if(found) System.out.println("YES");
+                else System.out.println("NO");
+                System.out.println(comparisions);
+                n--;
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+        }
     }
 }

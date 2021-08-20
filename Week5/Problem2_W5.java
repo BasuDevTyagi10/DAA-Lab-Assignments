@@ -65,7 +65,7 @@ public class Problem2_W5 {
                     if(arr[l]+arr[h] < k) l++;
                     else h--;
                 }
-                if(!isPresent) System.out.println("No Such pair Exist");
+                if(!isPresent) System.out.print("\nNo Such pair Exist");
             }
             sc.close();
         } catch (FileNotFoundException e) {

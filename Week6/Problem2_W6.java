@@ -7,13 +7,13 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Problem2_W6 {
-    // static int V = 0;   // no. of nodes
-    public static boolean isBipartite(int g[][], int s, int V) {
+    static int V = 0;   // no. of nodes
+    public static boolean isBipartite(int g[][], int s) {
         /* 
             Notation :
-            0   - no color
-            1   - red color
-            -1  - blue color
+            0   -   no color
+            1   -   red color
+            -1  -   blue color
         */
         int color[] = new int[V];
         Queue<Integer> queue = new LinkedList<>();
@@ -25,11 +25,11 @@ public class Problem2_W6 {
             if(g[u][u] != 0) return false;
             currColor *= -1;
             for (int v=0; v<V; ++v){
-                if (g[u][v]!=1 && color[v]==0){
+                if (g[u][v]!=0 && color[v]==0){
                     color[v] = currColor;
                     queue.add(v);
                 }
-                if (g[u][v]!=1 && color[v]==color[u])
+                if (g[u][v]!=0 && color[u]==color[v])
                     return false;
             }
         }
@@ -38,12 +38,12 @@ public class Problem2_W6 {
     public static void main(String[] args) {
         try {
             Scanner sc = new Scanner(new File("./Week6/input2.txt"));
-            int t = sc.nextInt();
-            while(t-- > 0){
-                int V = sc.nextInt();
-                int g[][] = new int[V][V];
-                System.out.println(isBipartite(g,0,V)?"YES":"NO");
-            }
+            V = sc.nextInt();
+            int g[][] = new int[V][V];
+            for(int i=0;i<V;i++)
+                for(int j=0;j<V;j++)
+                    g[i][j] = sc.nextInt();
+            System.out.println(isBipartite(g,0)?"YES":"NO");
             sc.close();
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
